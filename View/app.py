@@ -7,6 +7,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.ticker import LinearLocator
 from PyQt5 import uic
 
+
 class MyMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -29,8 +30,8 @@ class MyMainWindow(QMainWindow):
         Z = np.sin(R)
 
         # Plot the surface.
-        surf = self.ax.plot_surface(X, Y, Z, cmap=matplotlib.colormaps['viridis'],
-                               linewidth=0, antialiased=False)
+        self.ax.plot_surface(X, Y, Z, cmap=matplotlib.colormaps['viridis'],
+                                    linewidth=0, antialiased=False, rcount=200, ccount=200)
 
         # Customize the z axis.
         self.ax.set_zlim(-1.01, 1.01)
@@ -43,9 +44,3 @@ class MyMainWindow(QMainWindow):
 
         # Add the FigureCanvasQTAgg object to the layout
         layout.addWidget(self.canvas)
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MyMainWindow()
-    window.show()
-    sys.exit(app.exec_())
