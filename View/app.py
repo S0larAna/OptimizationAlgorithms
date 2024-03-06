@@ -26,14 +26,15 @@ class MyMainWindow(QMainWindow):
         # A StrMethodFormatter is used automatically
         self.ax.zaxis.set_major_formatter('{x:.02f}')
         self.canvas = FigureCanvas(self.fig)
-        self.X = np.arange(-5, 5, 0.25)
-        self.Y = np.arange(-5, 5, 0.25)
+        #self.X = np.arange(-5, 5, 0.25)
+        #self.Y = np.arange(-5, 5, 0.25)
 
         self.functionBox.currentTextChanged.connect(lambda: self.controller.change_function())
         self.startButton.clicked.connect(lambda: self.controller.startDescent())
 
-    def drawGraph(self, function):
-        self.X, self.Y = np.meshgrid(self.X, self.Y)
+    def drawGraph(self, function, X, Y):
+        self.ax.clear()
+        self.X, self.Y = np.meshgrid(X, Y)
         self.ax.autoscale(enable=True)
 
         # Plot the surface.
@@ -42,6 +43,7 @@ class MyMainWindow(QMainWindow):
 
         # Add the FigureCanvasQTAgg object to the layout
         self.layout.addWidget(self.canvas)
+        self.canvas.draw()
 
     def drawPoint(self, x, y, function):
         self.ax.scatter(x, y, function.compute(x, y), color='black', marker='o', s=10, zorder=10)

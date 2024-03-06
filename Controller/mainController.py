@@ -11,15 +11,15 @@ class mainWindowController():
 
 
     def change_function(self):
-        function = self._window.functionSelector.currentText()
+        function = self._window.functionBox.currentText()
 
         if function == 'Химмельблау':
             self.func = Himmelblau(self.X, self.Y)
         if function == 'Функция Бута':
             self.func = None
         if function == 'Функция сферы':
-            self.func = None
-        self._window.drawGraph(func=self.func)
+            self.func = Sphere(self.X, self.Y)
+        self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
 
     def startDescent(self):
         x = float(self._window.x_start.text())
