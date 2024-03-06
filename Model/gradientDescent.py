@@ -1,5 +1,5 @@
-from Model.functions import Function
 from __future__ import annotations
+from Model.functions import Function
 import numpy as np
 
 class Algorithms():
@@ -9,22 +9,25 @@ class Algorithms():
     def strategy(self, strategy: Function) -> None:
         self._strategy = strategy
 
-    def gradientDescent(self, eps, x, y, M, t):
+    def gradientDescent(self, x, y, M, t, eps=0.0001):
         k = 0
-        grad = self._strategy.findGradient(x, y)
-        while (grad[0]>eps or grad[1]>eps):
-            if (k>=M):
-                return (x, y)
-            else:
-                x_next = x - t * grad[0]
-                y_next = y - t * grad[1]
+        while (k<=M):
+            grad = self._strategy.findGradient(x, y)
+            if (abs(grad[0])<eps or abs(grad[1])<eps):
+                break
+            x_next = x - t * grad[0]
+            y_next = y - t * grad[1]
             func_next = self._strategy.compute(x_next, y_next)
             func_prev = self._strategy.compute(x, y)
-            if (func_next - func_prev < 0):
-                if (np.linalg.norm(np.array([y_next, x_next]) - np.array([y, x])) < eps) and abs(func_next - func_prev) < eps:
-                    return (x, y)
-                else:
-                    k+=1
-            else:
+            while not (func_next - func_prev < 0):
                 t/=2
-        return (x, y)
+                x_next = x - t * grad[0]
+                y_next = y - t * grad[1]
+                func_next = self._strategy.compute(x_next, y_next)
+                func_prev = self._strategy.compute(x, y)
+            if ((np.linalg.norm(np.array([x_next, y_next]) - np.array([x, y])) < eps) and abs(func_next - func_prev) < eps):
+                break
+            k += 1
+            x, y = x_next, y_next
+            print(x_next, y_next)
+            yield (x, y)
