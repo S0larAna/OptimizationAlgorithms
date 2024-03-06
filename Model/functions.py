@@ -33,4 +33,16 @@ class Sphere(Function):
     def findGradient(self, x, y):
         return (2*x, 2*y)
 
+class Booth(Function):
+    def __init__(self, x, y):
+        x, y = np.meshgrid(x, y)
+        self.func = np.array((x + 2*y - 7)**2 + (2*x +y -5)**2)
+
+    @staticmethod
+    def compute(x, y):
+        return ((x + 2*y - 7)**2 + (2*x +y -5)**2)
+
+    def findGradient(self, x, y):
+        return ((2 * (x + 2 * y - 7) + 2 * (2 * x + y - 5) * 2), (2 * (x + 2 * y - 7) * 2 + 2 * (2 * x + y - 5)))
+
 

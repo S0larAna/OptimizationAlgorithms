@@ -39,7 +39,7 @@ class MyMainWindow(QMainWindow):
 
         # Plot the surface.
         self.ax.plot_surface(self.X, self.Y, function.func, cmap=matplotlib.colormaps['viridis'],
-                                    linewidth=0, alpha=0.5, rcount=200, ccount=200)
+                                    linewidth=0, alpha=0.65, rcount=200, ccount=200)
 
         # Add the FigureCanvasQTAgg object to the layout
         self.layout.addWidget(self.canvas)

@@ -16,12 +16,13 @@ class mainWindowController():
         if function == 'Химмельблау':
             self.func = Himmelblau(self.X, self.Y)
         if function == 'Функция Бута':
-            self.func = None
+            self.func = Booth(self.X, self.Y)
         if function == 'Функция сферы':
             self.func = Sphere(self.X, self.Y)
         self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
 
     def startDescent(self):
+        self._window.resultsTextEdit.clear()
         x = float(self._window.x_start.text())
         y = float(self._window.y_start.text())
         iterations = int(self._window.iterations.text())
