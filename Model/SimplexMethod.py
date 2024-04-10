@@ -1,7 +1,7 @@
 from Model.functions import FunctionLab2
 import numpy as np
 
-class Simplex:
+class SimplexMethod:
     def __init__(self):
         self.X = np.arange(-5, 5, 0.25)
         self.Y = np.arange(-5, 5, 0.25)
@@ -21,8 +21,7 @@ class Simplex:
         self.mainCol = -1
         self.mainRow = -1
 
-    def startUp(self):
-        # Сформировали первую матрицу
+    def start(self):
         self.m = len(self.terms)
         self.n = len(self.terms[0]) - 1
         self.table = [[0] * (self.n + self.m) for _ in range(self.m + 1)]
@@ -46,13 +45,13 @@ class Simplex:
 
         self.result = [0] * (len(self.terms[-1]) - 2)
 
-        for x, y, func in self.Calculate():
+        for x, y, func in self.Simplex():
             yield x, y, func
 
-    def Calculate(self):
+    def Simplex(self):
         while (not self.checkIfNonNegative()):
             self.findMainCol()
-            self.fineMainRow()
+            self.findMainRow()
             self.basis[self.mainRow] = self.mainCol
 
             new_table = [[0] * self.n for i in range(self.m)]
@@ -82,7 +81,7 @@ class Simplex:
             if (self.table[self.m - 1][j]) > (self.table[self.m - 1][self.mainCol]):
                 self.mainCol = j
 
-    def fineMainRow(self):
+    def findMainRow(self):
         self.mainRow = 0
         for i in range(0, self.m - 1):
             if self.table[i][self.mainCol] > 0:
@@ -104,6 +103,6 @@ class Simplex:
 
 
 if __name__ == '__main__':
-    simplex = Simplex()
-    for x1,x2,f in simplex.startUp():
+    simplex = SimplexMethod()
+    for x1,x2,f in simplex.start():
         print(x1, x2, f, sep='\n', end='\n---\n')

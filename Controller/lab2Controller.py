@@ -1,4 +1,4 @@
-from Model.SimplexMethod import Simplex
+from Model.SimplexMethod import SimplexMethod
 from Model.functions import FunctionLab2
 import numpy as np
 
@@ -20,11 +20,11 @@ class Lab2Controller:
         try:
 
             self.window.resultsTextEdit.clear()
-            simplex = Simplex()
-            for i, el in enumerate(simplex.startUp()):
+            simplex = SimplexMethod()
+            for i, el in enumerate(simplex.start()):
                 self.window.drawPoint(el[0], el[1], self.function)
 
-                text = f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})'
+                text = f'итерация:{i} f({round(el[0], 5)}, {round(el[1], 5)}) = {round(el[2], 5)}'
                 self.window.resultsTextEdit.append(text)
                 point = el[:3]
 
