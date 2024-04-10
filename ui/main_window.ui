@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lab1Tab">
      <attribute name="title">
@@ -190,6 +190,11 @@
     <item>
      <property name="text">
       <string>Функция сферы</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Для симплекс-метода</string>
      </property>
     </item>
    </widget>

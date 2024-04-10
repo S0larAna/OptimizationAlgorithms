@@ -45,4 +45,15 @@ class Booth(Function):
     def findGradient(self, x, y):
         return ((2 * (x + 2 * y - 7) + 2 * (2 * x + y - 5) * 2), (2 * (x + 2 * y - 7) * 2 + 2 * (2 * x + y - 5)))
 
+class FunctionLab2(Function):
+    def __init__(self, x, y):
+        x, y = np.meshgrid(x, y)
+        self.func = np.array(2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y)
+    def findGradient(self):
+        pass
+
+    @staticmethod
+    def compute(x, y):
+        return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
+
 

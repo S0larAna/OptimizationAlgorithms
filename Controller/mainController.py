@@ -19,7 +19,10 @@ class mainWindowController():
             self.func = Booth(self.X, self.Y)
         if function == 'Функция сферы':
             self.func = Sphere(self.X, self.Y)
+        if function == 'Для симплекс-метода':
+            self.func = FunctionLab2(self.X, self.Y)
         self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
+
 
     def startDescent(self):
         self._window.resultsTextEdit.clear()
