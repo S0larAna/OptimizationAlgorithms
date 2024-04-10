@@ -2,7 +2,7 @@ from Model.functions import FunctionLab2
 import numpy as np
 
 class Simplex:
-    def __init__(self, debug=False):
+    def __init__(self):
         self.X = np.arange(-5, 5, 0.25)
         self.Y = np.arange(-5, 5, 0.25)
         self.function = FunctionLab2(self.X, self.Y)
@@ -21,24 +21,17 @@ class Simplex:
         self.mainCol = -1
         self.mainRow = -1
 
-        self.debug = debug
-
-    def calcOriginalFunc(self):
-        return self.function.compute(self.result[0], self.result[1])
-
     def startUp(self):
         # Сформировали первую матрицу
         self.m = len(self.terms)
         self.n = len(self.terms[0]) - 1
         self.table = [[0] * (self.n + self.m) for _ in range(self.m + 1)]
-
         for i in range(self.m):
             for j in range(self.n + self.m):
                 if j < self.n:
                     self.table[i][j] = self.terms[i][j]
                 else:
                     self.table[i][j] = 0
-
             if (self.n + i) < self.n + self.m:
                 if self.terms[i][-1] == '<=':
                     self.table[i][self.n + i] = 1
@@ -56,22 +49,11 @@ class Simplex:
         for x, y, func in self.Calculate():
             yield x, y, func
 
-        if self.debug: [print(i) for i in self.table]
-        if self.debug: print('Значения переменных:', self.result)
-        if self.debug: print('Мин значение функции:', sum([self.func[i] * self.result[i] for i in range(len(self.result))]))
-        if self.debug: print(self.result[0], self.result[1])
-        # print('Минимум оригинала:',
-        # yield self.result[0], self.result[1],self.calcOriginalFunc()
-
     def Calculate(self):
         while (not self.isItEnd()):
             self.findMainCol()
             self.fineMainRow()
             self.basis[self.mainRow] = self.mainCol
-
-            if self.debug: print('Базис:', self.basis)
-            if self.debug: print('Ведущий стобец', self.mainCol)
-            if self.debug: print('Ведущая строка', self.mainRow)
 
             new_table = [[0] * self.n for i in range(self.m)]
             for j in range(self.n):
@@ -82,13 +64,6 @@ class Simplex:
                 for j in range(self.n):
                     new_table[i][j] = self.table[i][j] - self.table[i][self.mainCol] * new_table[self.mainRow][j]
             self.table = new_table
-            if self.debug:
-                print('Таблица:')
-                for t in self.table:
-                    print(t)
-                print('Базис:', self.basis)
-                print('Ведущий стобец', self.mainCol)
-                print('Ведущая строка', self.mainRow)
             for i in range(len(self.result)):
                 try:
                     k = self.basis.index(i + 1)
@@ -99,7 +74,7 @@ class Simplex:
                     self.result[i] = self.table[k][0]
                 else:
                     self.result[i] = 0
-            yield self.result[0], self.result[1], self.calcOriginalFunc()
+            yield self.result[0], self.result[1], self.function.compute(self.result[0], self.result[1])
 
     def findMainCol(self):
         self.mainCol = 1
