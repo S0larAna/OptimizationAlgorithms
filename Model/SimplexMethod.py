@@ -50,7 +50,7 @@ class Simplex:
             yield x, y, func
 
     def Calculate(self):
-        while (not self.isItEnd()):
+        while (not self.checkIfNonNegative()):
             self.findMainCol()
             self.fineMainRow()
             self.basis[self.mainRow] = self.mainCol
@@ -94,7 +94,7 @@ class Simplex:
                     self.table[self.mainRow][0] / self.table[self.mainRow][self.mainCol])):
                 self.mainRow = i
 
-    def isItEnd(self):
+    def checkIfNonNegative(self):
         flag = True
         for j in range(1, self.n):
             if self.table[self.m - 1][j] > 0:
