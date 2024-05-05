@@ -21,10 +21,12 @@ class mainWindowController():
             self.func = Sphere(self.X, self.Y)
         if function == 'Для симплекс-метода':
             self.func = FunctionLab2(self.X, self.Y)
+        if function == 'Функция Розенброка':
+            self.func = Rosenbrock(self.X, self.Y)
         self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
 
 
-    def startDescent(self):
+    def run(self):
         self._window.resultsTextEdit.clear()
         x = float(self._window.x_start.text())
         y = float(self._window.y_start.text())

@@ -16,7 +16,7 @@ class Lab2Controller:
         pass
 
 
-    def startDescent(self):
+    def run(self):
         try:
 
             self.window.resultsTextEdit.clear()

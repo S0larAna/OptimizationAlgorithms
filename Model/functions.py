@@ -56,4 +56,16 @@ class FunctionLab2(Function):
     def compute(x, y):
         return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
 
+class Rosenbrock(Function):
+    def __init__(self, x, y):
+        x, y = np.meshgrid(x, y)
+        self.func = np.array((1-x)**2 + 100*(y-x**2)**2)
+
+    @staticmethod
+    def compute(x, y):
+        return (1-x)**2 + 100*(y-x**2)**2
+
+    def get_function_point(self, x, y):
+        return (1 - x) ** 2 + 100 * (y - x ** 2) ** 2
+
 

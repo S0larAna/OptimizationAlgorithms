@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="lab1Tab">
      <attribute name="title">
@@ -154,6 +154,83 @@
       <string>Lab 2</string>
      </attribute>
     </widget>
+    <widget class="QWidget" name="lab3Tab">
+     <attribute name="title">
+      <string>Lab 3</string>
+     </attribute>
+     <widget class="QLineEdit" name="iter_num">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Итерации</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="popul_size">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Размер популяции</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="delay">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Задержка</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
@@ -197,6 +274,11 @@
       <string>Для симплекс-метода</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Функция Розенброка</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
@@ -209,35 +291,6 @@
     </property>
     <property name="text">
      <string>Функция </string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>510</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Цветовая схема</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_2">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>520</y>
-      <width>301</width>
-      <height>22</height>
-     </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="resultsTextEdit">
