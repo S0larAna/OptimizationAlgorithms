@@ -10,6 +10,7 @@ from PyQt5 import uic
 from Controller.mainController import mainWindowController
 from Controller.lab2Controller import Lab2Controller
 from Controller.lab3Controller import Lab3Controller
+from Controller.lab4Controller import Lab4Controller
 from PyQt5.QtCore import QThreadPool, QRunnable, pyqtSignal, QThread, QTimer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
 
@@ -48,6 +49,8 @@ class MyMainWindow(QMainWindow):
             self.labController = Lab2Controller(self)
         elif index == 2:
             self.labController = Lab3Controller(self)
+        elif index == 3:
+            self.labController = Lab4Controller(self)
 
     def clear_points_dynamic(self):
         for point in self.points:

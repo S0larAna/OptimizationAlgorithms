@@ -68,4 +68,16 @@ class Rosenbrock(Function):
     def get_function_point(self, x, y):
         return (1 - x) ** 2 + 100 * (y - x ** 2) ** 2
 
+class Schwefeles(Function):
+    def __init__(self, x, y):
+        x, y = np.meshgrid(x, y)
+        self.func = np.array(-x * np.sin(np.sqrt(np.abs(x))) - y * np.sin(np.sqrt(np.abs(y))))
+
+    @staticmethod
+    def compute(x, y):
+        return -x * np.sin(np.sqrt(np.abs(x))) - y * np.sin(np.sqrt(np.abs(y)))
+
+    def get_function_point(self, x, y):
+        return -x * np.sin(np.sqrt(np.abs(x))) - y * np.sin(np.sqrt(np.abs(y)))
+
 
