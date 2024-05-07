@@ -39,6 +39,7 @@ class mainWindowController():
             for i, el in enumerate(grad):
                 self._window.drawPoint(el[0], el[1], self.func)
                 self._window.resultsTextEdit.append(f"итерация: {i}. f({round(el[0], 4)},{round(el[1], 4)})={round(self.func.compute(el[0], el[1]), 4)} \n")
+            self._window.drawPoint()
         except Exception as ex:
             # QMessageBox.warning(self.window, "Warning", "Wrong Data")
             print(ex)
