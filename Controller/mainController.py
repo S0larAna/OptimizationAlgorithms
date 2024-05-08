@@ -9,7 +9,6 @@ class mainWindowController():
         self.Y = np.arange(-5, 5, 0.25)
         self.func = Himmelblau(self.X, self.Y)
 
-
     def change_function(self):
         function = self._window.functionBox.currentText()
 
@@ -23,7 +22,12 @@ class mainWindowController():
             self.func = FunctionLab2(self.X, self.Y)
         if function == 'Функция Розенброка':
             self.func = Rosenbrock(self.X, self.Y)
+        if function == 'Функция Швефеля':
+            self.X = np.arange(-500, 500, 0.25)
+            self.Y = np.arange(-500, 500, 0.25)
+            self.func = Schwefeles(self.X, self.Y)
         self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
+        return self.func
 
 
     def run(self):
