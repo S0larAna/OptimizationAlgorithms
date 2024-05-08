@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QVBoxLayout, QMainWindow, QWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+from matplotlib.figure import Figure
 from matplotlib.ticker import LinearLocator
 from PyQt5 import uic
 from Controller.mainController import mainWindowController
@@ -29,6 +30,7 @@ class MyMainWindow(QMainWindow):
         self.ax.zaxis.set_major_formatter('{x:.02f}')
         self.tabWidget.setCurrentIndex(0)
         self.canvas = FigureCanvas(self.fig)
+        self.layout.addWidget(self.canvas)
         self.text_thread = TextThread(self)
         self.point_thread = PointThread(self)
         self.point_list_thread = PointListThread(self, self.canvas)
@@ -70,7 +72,7 @@ class MyMainWindow(QMainWindow):
                                     linewidth=0, alpha=0.65, rcount=200, ccount=200)
 
         # Add the FigureCanvasQTAgg object to the layout
-        self.layout.addWidget(self.canvas)
+        # self.layout.addWidget(self.canvas)
         self.canvas.draw()
 
     def drawPoint(self, x, y, function, mycolor='black'):
