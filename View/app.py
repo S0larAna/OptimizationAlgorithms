@@ -4,16 +4,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QVBoxLayout, QMainWindow, QWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from matplotlib.figure import Figure
 from matplotlib.ticker import LinearLocator
 from PyQt5 import uic
 from Controller.mainController import mainWindowController
 from Controller.lab2Controller import Lab2Controller
 from Controller.lab3Controller import Lab3Controller
 from Controller.lab4Controller import Lab4Controller
+from Controller.lab5Controller import Lab5Controller
 from PyQt5.QtCore import QThreadPool, QRunnable, pyqtSignal, QThread, QTimer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
+from Model.functions import *
 
 
 class MyMainWindow(QMainWindow):
@@ -21,6 +21,7 @@ class MyMainWindow(QMainWindow):
         super().__init__()
         self.controller = mainWindowController(self)
         self.labController = mainWindowController(self)
+        # self.labController.set_function(Himmelblau(self.X, self.Y))
         # Load the UI file
         uic.loadUi('ui\main_window.ui', self)
         self.layout = QVBoxLayout(self.widget)
@@ -53,6 +54,8 @@ class MyMainWindow(QMainWindow):
             self.labController = Lab3Controller(self)
         elif index == 3:
             self.labController = Lab4Controller(self)
+        elif index == 4:
+            self.labController = Lab5Controller(self)
 
     def clear_points_dynamic(self):
         for point in self.points:
@@ -150,14 +153,14 @@ class PointListThread(QThread):
             self.points.append((el, color, marker, delay))
 
     def set_points(self, points, color, marker, delay):
-        # self.points.clear()
+        self.points.clear()
         self.add_points(points, color, marker, delay)
 
     def run(self):
         for i, el in enumerate(self.points):
             min_point = min(el[0], key=lambda x: x[2])
-            self.point_signal.emit([min_point], 'red', 'o')
             self.point_signal.emit(el[0], el[1], el[2])
+            self.point_signal.emit([min_point], 'red', 'o')
             self.msleep(int(el[3] * 1000))
             if i != len(self.points) - 1:
                 self.clearPointsSignal.emit()

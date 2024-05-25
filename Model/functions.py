@@ -21,6 +21,9 @@ class Himmelblau(Function):
     def findGradient(x, y):
         return (4*x*(x**2 + y -11) + 2*(x + y**2 -7), 2*(x**2 + y - 11) + 4*y*(x + y**2 - 7))
 
+    def get_function_point(self, x, y):
+        return ((x**2+y-11)**2 + (x+y**2-7)**2)
+
 class Sphere(Function):
     def __init__(self, x, y):
         x, y = np.meshgrid(x, y)
@@ -32,6 +35,9 @@ class Sphere(Function):
 
     def findGradient(self, x, y):
         return (2*x, 2*y)
+
+    def get_function_point(self, x, y):
+        return (x**2 + y**2)
 
 class Booth(Function):
     def __init__(self, x, y):
@@ -45,6 +51,9 @@ class Booth(Function):
     def findGradient(self, x, y):
         return ((2 * (x + 2 * y - 7) + 2 * (2 * x + y - 5) * 2), (2 * (x + 2 * y - 7) * 2 + 2 * (2 * x + y - 5)))
 
+    def get_function_point(self, x, y):
+        return ((x + 2*y - 7)**2 + (2*x +y -5)**2)
+
 class FunctionLab2(Function):
     def __init__(self, x, y):
         x, y = np.meshgrid(x, y)
@@ -54,6 +63,9 @@ class FunctionLab2(Function):
 
     @staticmethod
     def compute(x, y):
+        return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
+
+    def get_function_point(self, x, y):
         return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
 
 class Rosenbrock(Function):

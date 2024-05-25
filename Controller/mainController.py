@@ -9,6 +9,9 @@ class mainWindowController():
         self.Y = np.arange(-5, 5, 0.25)
         self.func = Himmelblau(self.X, self.Y)
 
+    def set_function(self, function):
+        self.func = function
+
     def change_function(self):
         function = self._window.functionBox.currentText()
 
@@ -26,6 +29,7 @@ class mainWindowController():
             self.X = np.arange(-500, 500, 0.25)
             self.Y = np.arange(-500, 500, 0.25)
             self.func = Schwefeles(self.X, self.Y)
+        self._window.labController.set_function(self.func)
         self._window.drawGraph(function=self.func, X=self.X, Y=self.Y)
         return self.func
 
