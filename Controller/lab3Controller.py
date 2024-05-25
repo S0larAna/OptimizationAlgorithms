@@ -58,7 +58,6 @@ class Lab3Controller:
 
             x_bounds = (-5, 5)
             y_bounds = (-5, 5)
-
             allPoints = []
 
             for i, population in enumerate(genetic_algorithm.run(x_bounds, y_bounds)):

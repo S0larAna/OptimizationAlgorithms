@@ -61,7 +61,7 @@ class Lab4Controller:
             delay = float(self.delay_getter())
 
             self.window.resultsTextEdit.clear()
-            particleSwarm = Swarm(self.num_particles, self.weight, self.num_iter, self.function, self.phi1, self.phi2)
+            particleSwarm = Swarm(self.num_particles, self.num_iter, self.function, self.phi1, self.phi2, self.weight)
 
             allPoints = []
             allBestPoints = []

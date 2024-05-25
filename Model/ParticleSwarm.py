@@ -1,7 +1,7 @@
 import numpy as np
 
 class Swarm:
-    def __init__(self, num_particles, weight, iterations, function, phi1=1.49, phi2=1.49):
+    def __init__(self, num_particles, iterations, function, phi1=1, phi2=1, weight=0.728):
         self.num_particles = num_particles
         self.weight = weight
         self.best_global_point = []
