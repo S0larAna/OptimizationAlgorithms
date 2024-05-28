@@ -94,8 +94,8 @@ class Lab5Controller:
 
             for i, (bees_data, selected_data, best_bee) in enumerate(bees.run(self.iter_count)):
                 points = []
-                for mielpops in bees_data:
-                    x, y, z = mielpops
+                for bee in bees_data:
+                    x, y, z = bee
                     points.append([x, y, z])
 
                 all_points.append(points)
